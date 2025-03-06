@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qbaret <qbaret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:19:03 by quentin           #+#    #+#             */
-/*   Updated: 2025/03/03 12:21:07 by quentin          ###   ########.fr       */
+/*   Updated: 2025/03/06 15:02:13 by qbaret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@
 
 typedef struct s_stack
 {
+    int             *a;
+    int             *b;
 	int				value;
 	int				index;
 	struct s_stack	*next;
 }					t_stack;
 
-void				radix_sort(t_stack **a, t_stack **b, int size);
-void				index_stack(t_stack *stack, int size);
-int					get_max_bits(int max);
+int                 stack_max(t_stack *stack);
+int                 stack_size(t_stack *stack);
+int                 get_max_bits(t_stack *stack);
+void                radix_sort(t_stack **a, t_stack **b);
 void				stack_add_back(t_stack **stack, int value);
-void				print_stack(t_stack *stack, char *name);
 t_stack				*init_stack(int argc, char **argv);
 void				push(t_stack **from, t_stack **to);
 void				pa(t_stack **a, t_stack **b);

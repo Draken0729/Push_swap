@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qbaret <qbaret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:24:35 by quentin           #+#    #+#             */
-/*   Updated: 2025/03/03 11:52:12 by quentin          ###   ########.fr       */
+/*   Updated: 2025/03/06 12:45:02 by qbaret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void push(t_stack **from, t_stack **to)
         return;
 
     t_stack *temp = *from;
-    *from = (*from)->next;  // Avancer dans la pile source
-    temp->next = *to;       // Lier l'élément au sommet de la destination
-    *to = temp;             // Mettre à jour la tête de la destination
+    *from = (*from)->next; 
+    temp->next = *to;
+    *to = temp;
 }
 
 void pa(t_stack **a, t_stack **b)

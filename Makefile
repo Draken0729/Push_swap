@@ -30,7 +30,6 @@ clean:
 	rm -f $(OBJ)
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(NAME) $(checker_linux)
 	make -C ft_printf fclean
 	make -C libft fclean
 	

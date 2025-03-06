@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qbaret <qbaret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:56:26 by quentin           #+#    #+#             */
-/*   Updated: 2025/03/03 12:03:23 by quentin          ###   ########.fr       */
+/*   Updated: 2025/03/06 15:02:07 by qbaret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,18 @@ void stack_add_back(t_stack **stack, int value)
     }
 }
 
-void print_stack(t_stack *stack, char *name)
-{
-    ft_printf("Pile %s: ", name);
-    while (stack)
-    {
-        ft_printf("%d ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("\n");
-}
-
 t_stack *init_stack(int argc, char **argv)
 {
+    int i;
+    
     t_stack *stack = NULL;
-    for (int i = 1; i < argc; i++)
-        stack_add_back(&stack, atoi(argv[i]));
+    
+    i = 1;
+    while (i < argc)
+    {
+        stack_add_back(&stack, ft_atoi(argv[i]));
+        i++;
+    }
     return stack;
 }
 
@@ -61,13 +57,8 @@ int main(int argc, char **argv)
 
     t_stack *a = init_stack(argc, argv);
     t_stack *b = NULL;
-
-    print_stack(a, "A");
-
-    index_stack(a, argc - 1);
-    radix_sort(&a, &b, argc - 1);
-
-    print_stack(a, "A (triée)");
+    
+    radix_sort(&a, &b);
     
     return 0;
 }
