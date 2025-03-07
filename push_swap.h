@@ -6,7 +6,7 @@
 /*   By: qbaret <qbaret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:19:03 by quentin           #+#    #+#             */
-/*   Updated: 2025/03/06 15:02:13 by qbaret           ###   ########.fr       */
+/*   Updated: 2025/03/07 12:59:04 by qbaret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,29 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_stack
 {
-    int             *a;
-    int             *b;
+	int				*a;
+	int				*b;
 	int				value;
 	int				index;
 	struct s_stack	*next;
 }					t_stack;
 
-int                 stack_max(t_stack *stack);
-int                 stack_size(t_stack *stack);
-int                 get_max_bits(t_stack *stack);
-void                radix_sort(t_stack **a, t_stack **b);
+int					check_int(int argc, char **argv);
+void				free_stack(t_stack *stack);
+void				sort_five(t_stack **a, t_stack **b);
+void				sort_four(t_stack **a, t_stack **b);
+void				sort_three(t_stack **a);
+void				sort_two(t_stack **a);
+int					stack_max(t_stack *stack);
+int					stack_second_min(t_stack *stack);
+int					stack_min(t_stack *stack);
+int					stack_size(t_stack *stack);
+int					get_max_bits(t_stack *stack);
+void				radix_sort(t_stack **a, t_stack **b);
 void				stack_add_back(t_stack **stack, int value);
 t_stack				*init_stack(int argc, char **argv);
 void				push(t_stack **from, t_stack **to);

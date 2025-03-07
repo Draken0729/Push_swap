@@ -6,7 +6,7 @@
 /*   By: qbaret <qbaret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:06:40 by qbaret            #+#    #+#             */
-/*   Updated: 2024/11/05 14:10:56 by qbaret           ###   ########.fr       */
+/*   Updated: 2025/03/07 10:12:27 by qbaret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	*memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
+
 /*int	main(void)
 {
 	char str[] = "Hello, world!";

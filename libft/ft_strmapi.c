@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qbaret <qbaret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 10:22:23 by quentin           #+#    #+#             */
-/*   Updated: 2024/11/08 10:46:41 by quentin          ###   ########.fr       */
+/*   Updated: 2025/03/07 10:14:12 by qbaret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ size_t	ft_strlen(const char *s)
 	}
 	return (i);
 }
+
 int	ft_toupper(int c)
 {
 	{
@@ -31,7 +32,8 @@ int	ft_toupper(int c)
 	}
 	return (c);
 }
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*new_str;
 	unsigned int	i;
@@ -50,6 +52,7 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	new_str[i] = '\0';
 	return (new_str);
 }
+
 /*char	to_upper_if_even(unsigned int i, char c)
 {
 	if (i % 2 == 0)
@@ -57,7 +60,7 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (c);
 }
 
-int main()
+int	main(void)
 {
 	char *str = "hello world!";
 	char *result = ft_strmapi(str, to_upper_if_even);
@@ -66,5 +69,5 @@ int main()
 		printf("%s\n", result);
 		free(result);
 	}
-	return 0;
+	return (0);
 }*/

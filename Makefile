@@ -4,7 +4,7 @@ ft_printf = ft_printf/ft_printf.a
 checker_linux = checker_linux
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = main.c swap.c rotate.c revrotate.c push.c algo.c
+SRC = main.c swap.c rotate.c revrotate.c push.c algo.c sort.c stack.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
