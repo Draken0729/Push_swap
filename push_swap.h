@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:19:03 by quentin           #+#    #+#             */
-/*   Updated: 2025/03/10 10:15:52 by quentin          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:20:47 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <ctype.h>
 
 typedef struct s_stack
 {

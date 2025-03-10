@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:24:40 by quentin           #+#    #+#             */
-/*   Updated: 2025/03/10 10:16:01 by quentin          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:20:28 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void	radix_sort(t_stack **a, t_stack **b)
 		i++;
 	}
 }
-
-#include <ctype.h>
 
 int	is_valid_number(const char *str)
 {
