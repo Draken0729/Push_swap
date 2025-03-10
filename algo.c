@@ -1,77 +1,101 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:24:40 by quentin           #+#    #+#             */
-/*   Updated: 2025/03/03 11:54:04 by quentin          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:16:01 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int get_max_bits(int max)
+int	get_max_bits(t_stack *stack)
 {
-    int bits = 0;
-    while ((max >> bits) != 0)
-        bits++;
-    return bits;
+	int	max;
+	int	bits;
+
+	max = stack_max(stack);
+	bits = 0;
+	while (max >> bits != 0)
+		bits++;
+	return (bits);
 }
 
-void index_stack(t_stack *stack, int size)
+void	radix_sort(t_stack **a, t_stack **b)
 {
-    int *sorted = malloc(size * sizeof(int));
-    t_stack *tmp = stack;
-    int i = 0;
-    
-    while (tmp)
-    {
-        sorted[i++] = tmp->value;
-        tmp = tmp->next;
-    }
-    
-    for (int j = 0; j < size - 1; j++)
-        for (int k = 0; k < size - j - 1; k++)
-            if (sorted[k] > sorted[k + 1])
-            {
-                int temp = sorted[k];
-                sorted[k] = sorted[k + 1];
-                sorted[k + 1] = temp;
-            }
-    
-    tmp = stack;
-    while (tmp)
-    {
-        for (i = 0; i < size; i++)
-            if (tmp->value == sorted[i])
-            {
-                tmp->index = i;
-                break;
-            }
-        tmp = tmp->next;
-    }
-    free(sorted);
+	int	i;
+	int	j;
+	int	size;
+	int	max_bits;
+
+	max_bits = get_max_bits(*a);
+	size = stack_size(*a);
+	i = 0;
+	while (i < max_bits)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if ((((*a)->value >> i) & 1) == 0)
+				pb(a, b);
+			else
+				ra(a);
+			j++;
+		}
+		while (*b)
+			pa(a, b);
+		i++;
+	}
 }
 
-void radix_sort(t_stack **a, t_stack **b, int size)
+#include <ctype.h>
+
+int	is_valid_number(const char *str)
 {
-    int max_bits = get_max_bits(size - 1);
-    int i, j;
-    
-    for (i = 0; i < max_bits; i++)
-    {
-        int len = size;
-        for (j = 0; j < len; j++)
-        {
-            if ((((*a)->index >> i) & 1) == 0)
-                pb(b, a); // Pousser vers B si le bit est 0
-            else
-                ra(a); // Sinon, rotation
-        }
-        
-        while (*b)
-            pa(a, b); // Remettre les éléments dans A
-    }
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	ft_atoi_secure(const char *str, int *error)
+{
+	long long	result;
+	int			sign;
+	int			i;
+
+	result = 0;
+	sign = 1;
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i])
+	{
+		result = result * 10 + (str[i] - '0');
+		if ((sign == 1 && result > INT_MAX) || (sign == -1 &&
+				-result < INT_MIN))
+		{
+			*error = 1;
+			return (0);
+		}
+		i++;
+	}
+	return ((int)(sign * result));
 }

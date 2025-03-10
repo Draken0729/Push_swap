@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:19:03 by quentin           #+#    #+#             */
-/*   Updated: 2025/03/03 12:21:07 by quentin          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:15:52 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
 # include <fcntl.h>
+# include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -24,16 +25,28 @@
 
 typedef struct s_stack
 {
+	int				*a;
+	int				*b;
 	int				value;
 	int				index;
 	struct s_stack	*next;
 }					t_stack;
 
-void				radix_sort(t_stack **a, t_stack **b, int size);
-void				index_stack(t_stack *stack, int size);
-int					get_max_bits(int max);
+int					is_valid_number(const char *str);
+int					ft_atoi_secure(const char *str, int *error);
+int					check_int(int argc, char **argv);
+void				free_stack(t_stack *stack);
+void				sort_five(t_stack **a, t_stack **b);
+void				sort_four(t_stack **a, t_stack **b);
+void				sort_three(t_stack **a);
+void				sort_two(t_stack **a);
+int					stack_max(t_stack *stack);
+int					stack_second_min(t_stack *stack);
+int					stack_min(t_stack *stack);
+int					stack_size(t_stack *stack);
+int					get_max_bits(t_stack *stack);
+void				radix_sort(t_stack **a, t_stack **b);
 void				stack_add_back(t_stack **stack, int value);
-void				print_stack(t_stack *stack, char *name);
 t_stack				*init_stack(int argc, char **argv);
 void				push(t_stack **from, t_stack **to);
 void				pa(t_stack **a, t_stack **b);

@@ -6,7 +6,7 @@
 /*   By: qbaret <qbaret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:03:07 by qbaret            #+#    #+#             */
-/*   Updated: 2024/11/05 17:18:06 by qbaret           ###   ########.fr       */
+/*   Updated: 2025/03/07 10:35:55 by qbaret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == (char)c)
-			return ((char*)&s[i]);
+			return (((char *)&s[i]));
 		i++;
 	}
 	if (c == '\0')
 		return ((char *)&s[i]);
 	return (NULL);
 }
+
 /*int	main(void)
 {
 	const char str[] = "Bonjour tout le monde";

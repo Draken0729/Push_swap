@@ -6,7 +6,7 @@
 /*   By: qbaret <qbaret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:47:48 by qbaret            #+#    #+#             */
-/*   Updated: 2024/11/04 15:07:11 by qbaret           ###   ########.fr       */
+/*   Updated: 2025/03/07 10:14:00 by qbaret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ size_t	ft_strlen(const char *s)
 	}
 	return (i);
 }
+
 /*int main()
 {
 	const char *a = "bonjour456";

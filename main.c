@@ -6,68 +6,100 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 11:56:26 by quentin           #+#    #+#             */
-/*   Updated: 2025/03/03 12:03:23 by quentin          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:15:37 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void stack_add_back(t_stack **stack, int value)
+void	stack_add_back(t_stack **stack, int value)
 {
-    t_stack *new = malloc(sizeof(t_stack));
-    t_stack *temp = *stack;
+	t_stack	*new;
+	t_stack	*temp;
 
-    if (!new)
-        return;
-    new->value = value;
-    new->next = NULL;
-
-    if (!*stack)
-        *stack = new;
-    else
-    {
-        while (temp->next)
-            temp = temp->next;
-        temp->next = new;
-    }
+	new = malloc(sizeof(t_stack));
+	temp = *stack;
+	if (!new)
+		return ;
+	new->value = value;
+	new->next = NULL;
+	if (!*stack)
+		*stack = new;
+	else
+	{
+		while (temp->next)
+			temp = temp->next;
+		temp->next = new;
+	}
 }
 
-void print_stack(t_stack *stack, char *name)
+int	check_duplicate(t_stack *stack, int value)
 {
-    ft_printf("Pile %s: ", name);
-    while (stack)
-    {
-        ft_printf("%d ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("\n");
+	while (stack)
+	{
+		if (stack->value == value)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
 }
 
-t_stack *init_stack(int argc, char **argv)
+int	validate_and_convert(const char *str, int *error)
 {
-    t_stack *stack = NULL;
-    for (int i = 1; i < argc; i++)
-        stack_add_back(&stack, atoi(argv[i]));
-    return stack;
+	if (!is_valid_number(str))
+	{
+		*error = 1;
+		return (0);
+	}
+	return (ft_atoi_secure(str, error));
 }
 
-int main(int argc, char **argv)
+t_stack	*init_stack(int argc, char **argv)
 {
-    if (argc < 2)
-    {
-        ft_printf("Usage: ./push_swap num1 num2 num3 ...\n");
-        return 1;
-    }
+	t_stack	*stack;
 
-    t_stack *a = init_stack(argc, argv);
-    t_stack *b = NULL;
+	int i, error, value;
+	stack = NULL;
+	i = 1;
+	while (i < argc)
+	{
+		error = 0;
+		value = validate_and_convert(argv[i], &error);
+		if (error || check_duplicate(stack, value))
+		{
+			ft_printf("Error\n");
+			free_stack(stack);
+			return (NULL);
+		}
+		stack_add_back(&stack, value);
+		i++;
+	}
+	return (stack);
+}
 
-    print_stack(a, "A");
+int	main(int argc, char **argv)
+{
+	t_stack	*a;
+	t_stack	*b;
 
-    index_stack(a, argc - 1);
-    radix_sort(&a, &b, argc - 1);
-
-    print_stack(a, "A (triée)");
-    
-    return 0;
+	if (argc < 2)
+	{
+		ft_printf("Error\n");
+		return (1);
+	}
+	a = init_stack(argc, argv);
+	b = NULL;
+	if (stack_size(a) == 2)
+		sort_two(&a);
+	else if (stack_size(a) == 3)
+		sort_three(&a);
+	else if (stack_size(a) == 4)
+		sort_four(&a, &b);
+	else if (stack_size(a) == 5)
+		sort_five(&a, &b);
+	else
+		radix_sort(&a, &b);
+	free_stack(a);
+	free_stack(b);
+	return (0);
 }
